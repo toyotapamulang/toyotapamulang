@@ -1,171 +1,191 @@
- 
-    initStickyHeader();
+// ==========================================
+// PRELOADER
+// ==========================================
 
-    initMobileMenu();
+window.addEventListener("load", () => {
 
-    initSmoothScroll();
+    const preloader = document.querySelector(".preloader");
 
-    initBackToTop();
+    if (preloader) {
+
+        setTimeout(() => {
+
+            preloader.classList.add("hide");
+
+            setTimeout(() => {
+
+                preloader.remove();
+
+            }, 500);
+
+        }, 500);
+
+    }
 
 });
 
-/* ==========================================================
-   ELEMENTS
-========================================================== */
+// ==========================================
+// STICKY HEADER
+// ==========================================
 
-const header = document.getElementById("header");
+const header = document.querySelector(".header");
+
+function stickyHeader() {
+
+    if (!header) return;
+
+    if (window.scrollY > 80) {
+
+        header.classList.add("scrolled");
+
+    } else {
+
+        header.classList.remove("scrolled");
+
+    }
+
+}
+
+window.addEventListener("scroll", stickyHeader);
+
+stickyHeader();
+
+// ==========================================
+// MOBILE MENU
+// ==========================================
 
 const menuToggle = document.querySelector(".menu-toggle");
 
 const navMenu = document.querySelector(".nav-menu");
 
-const backTop = document.getElementById("backTop");
-
-/* ==========================================================
-   PRELOADER
-========================================================== */
-
-function initPreloader() {
-
-    const preloader = document.getElementById("preloader");
-
-    if (!preloader) return;
-
-    window.addEventListener("load", () => {
-
-        preloader.style.opacity = "0";
-
-        preloader.style.visibility = "hidden";
-
-        setTimeout(() => {
-
-            preloader.remove();
-
-        }, 500);
-
-    });
-
-}
-
-/* ==========================================================
-   STICKY HEADER
-========================================================== */
-
-function initStickyHeader() {
-
-    const onScroll = () => {
-
-        if (!header) return;
-
-        if (window.scrollY > 80) {
-
-            header.classList.add("scrolled");
-
-        } else {
-
-            header.classList.remove("scrolled");
-
-        }
-
-    };
-
-    onScroll();
-
-    window.addEventListener("scroll", onScroll);
-
-}
-
-/* ==========================================================
-   MOBILE MENU
-========================================================== */
-
-function initMobileMenu() {
-
-    if (!menuToggle || !navMenu) return;
+if (menuToggle && navMenu) {
 
     menuToggle.addEventListener("click", () => {
 
-        menuToggle.classList.toggle("active");
-
         navMenu.classList.toggle("active");
 
-        document.body.classList.toggle("menu-open");
+        menuToggle.classList.toggle("active");
 
-    });
+        const icon = menuToggle.querySelector("i");
 
-    document.querySelectorAll(".nav-menu a").forEach(link => {
+        if (icon) {
 
-        link.addEventListener("click", () => {
+            if (navMenu.classList.contains("active")) {
 
-            menuToggle.classList.remove("active");
+                icon.classList.remove("fa-bars");
 
-            navMenu.classList.remove("active");
+                icon.classList.add("fa-times");
 
-            document.body.classList.remove("menu-open");
+            } else {
 
-        });
+                icon.classList.remove("fa-times");
 
-    });
+                icon.classList.add("fa-bars");
 
-}
-
-/* ==========================================================
-   SMOOTH SCROLL
-========================================================== */
-
-function initSmoothScroll() {
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-        anchor.addEventListener("click", function (e) {
-
-            const target = document.querySelector(this.getAttribute("href"));
-
-            if (!target) return;
-
-            e.preventDefault();
-
-            target.scrollIntoView({
-
-                behavior: "smooth",
-
-                block: "start"
-
-            });
-
-        });
-
-    });
-
-}
-
-/* ==========================================================
-   BACK TO TOP
-========================================================== */
-
-function initBackToTop() {
-
-    if (!backTop) return;
-
-    const toggleButton = () => {
-
-        if (window.scrollY > 500) {
-
-            backTop.classList.add("show");
-
-        } else {
-
-            backTop.classList.remove("show");
+            }
 
         }
 
-    };
+    });
 
-    toggleButton();
+}
 
-    window.addEventListener("scroll", toggleButton);
+// ==========================================
+// CLOSE MENU WHEN CLICK LINK
+// ==========================================
 
-    backTop.addEventListener("click", () => {
+document.querySelectorAll(".nav-menu a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        if (navMenu) {
+
+            navMenu.classList.remove("active");
+
+        }
+
+        if (menuToggle) {
+
+            menuToggle.classList.remove("active");
+
+            const icon = menuToggle.querySelector("i");
+
+            if (icon) {
+
+                icon.classList.remove("fa-times");
+
+                icon.classList.add("fa-bars");
+
+            }
+
+        }
+
+    });
+
+});
+
+// ==========================================
+// CLOSE MENU WHEN RESIZE
+// ==========================================
+
+window.addEventListener("resize", () => {
+
+    if (window.innerWidth > 992) {
+
+        if (navMenu) {
+
+            navMenu.classList.remove("active");
+
+        }
+
+        if (menuToggle) {
+
+            menuToggle.classList.remove("active");
+
+            const icon = menuToggle.querySelector("i");
+
+            if (icon) {
+
+                icon.classList.remove("fa-times");
+
+                icon.classList.add("fa-bars");
+
+            }
+
+        }
+
+    }
+
+});
+// ==========================================
+// BACK TO TOP
+// ==========================================
+
+const backToTop = document.getElementById("backToTop");
+
+function toggleBackToTop() {
+
+    if (!backToTop) return;
+
+    if (window.scrollY > 400) {
+
+        backToTop.classList.add("show");
+
+    } else {
+
+        backToTop.classList.remove("show");
+
+    }
+
+}
+
+window.addEventListener("scroll", toggleBackToTop);
+
+toggleBackToTop();
+
+if (backToTop) {
+
+    backToTop.addEventListener("click", () => {
 
         window.scrollTo({
 
@@ -178,201 +198,633 @@ function initBackToTop() {
     });
 
 }
-/* ==========================================================
-   SCROLL REVEAL
-========================================================== */
 
-function initScrollReveal() {
+// ==========================================
+// SMOOTH SCROLL
+// ==========================================
 
-    const items = document.querySelectorAll(
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
-        ".hero-content, .quick-card, .counter-box, .about-image, .about-content, .car-card, .promo-wrapper, .why-card, .simulation-grid, .testimonial-card, .faq-item"
+    anchor.addEventListener("click", function (e) {
 
-    );
+        const target = document.querySelector(this.getAttribute("href"));
 
-    if (!items.length) return;
+        if (!target) return;
 
-    const observer = new IntersectionObserver(
+        e.preventDefault();
 
-        (entries) => {
+        const headerHeight = header ? header.offsetHeight : 80;
 
-            entries.forEach((entry) => {
+        const targetPosition = target.offsetTop - headerHeight;
 
-                if (entry.isIntersecting) {
+        window.scrollTo({
 
-                    entry.target.classList.add("show");
+            top: targetPosition,
 
-                    observer.unobserve(entry.target);
+            behavior: "smooth"
 
-                }
+        });
+
+    });
+
+});
+
+// ==========================================
+// ACTIVE MENU
+// ==========================================
+
+const sections = document.querySelectorAll("section[id]");
+
+const navLinks = document.querySelectorAll(".nav-menu a");
+
+function activeMenu() {
+
+    const scrollY = window.pageYOffset;
+
+    sections.forEach(section => {
+
+        const sectionHeight = section.offsetHeight;
+
+        const sectionTop = section.offsetTop - 120;
+
+        const sectionId = section.getAttribute("id");
+
+        if (
+
+            scrollY >= sectionTop &&
+
+            scrollY < sectionTop + sectionHeight
+
+        ) {
+
+            navLinks.forEach(link => {
+
+                link.classList.remove("active");
 
             });
 
-        },
+            const activeLink = document.querySelector(
 
-        {
+                '.nav-menu a[href="#' + sectionId + '"]'
 
-            threshold: .15
+            );
+
+            if (activeLink) {
+
+                activeLink.classList.add("active");
+
+            }
 
         }
-
-    );
-
-    items.forEach((item) => {
-
-        item.classList.add("reveal");
-
-        observer.observe(item);
 
     });
 
 }
 
-/* ==========================================================
-   COUNTER ANIMATION
-========================================================== */
+window.addEventListener("scroll", activeMenu);
 
-function initCounter() {
+activeMenu();
 
-    const counters = document.querySelectorAll("[data-counter]");
+// ==========================================
+// HEADER SHADOW
+// ==========================================
 
-    if (!counters.length) return;
+window.addEventListener("scroll", () => {
 
-    const runCounter = (counter) => {
+    if (!header) return;
 
-        const target = parseInt(counter.dataset.counter);
+    if (window.scrollY > 30) {
 
-        const duration = 1800;
+        header.style.boxShadow = "0 10px 30px rgba(0,0,0,.08)";
 
-        let start = 0;
+    } else {
 
-        const step = Math.ceil(target / (duration / 16));
+        header.style.boxShadow = "none";
 
-        const timer = setInterval(() => {
+    }
 
-            start += step;
+});
 
-            if (start >= target) {
+// ==========================================
+// SCROLL PROGRESS
+// ==========================================
 
-                start = target;
+const progressBar = document.createElement("div");
 
-                clearInterval(timer);
+progressBar.id = "scroll-progress";
+
+progressBar.style.position = "fixed";
+
+progressBar.style.top = "0";
+
+progressBar.style.left = "0";
+
+progressBar.style.height = "4px";
+
+progressBar.style.width = "0%";
+
+progressBar.style.background = "#eb0a1e";
+
+progressBar.style.zIndex = "99999";
+
+progressBar.style.transition = "width .15s linear";
+
+document.body.appendChild(progressBar);
+
+window.addEventListener("scroll", () => {
+
+    const scrollTop = window.pageYOffset;
+
+    const docHeight =
+
+        document.documentElement.scrollHeight -
+
+        document.documentElement.clientHeight;
+
+    const progress = (scrollTop / docHeight) * 100;
+
+    progressBar.style.width = progress + "%";
+
+});
+// ==========================================
+// FAQ ACCORDION
+// ==========================================
+
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach(item => {
+
+    const question = item.querySelector(".faq-question");
+
+    question?.addEventListener("click", () => {
+
+        faqItems.forEach(faq => {
+
+            if (faq !== item) {
+
+                faq.classList.remove("active");
 
             }
 
-            counter.textContent = start.toLocaleString("id-ID");
+        });
 
-        }, 16);
+        item.classList.toggle("active");
 
-    };
+    });
 
-    const observer = new IntersectionObserver((entries) => {
+});
+
+// ==========================================
+// SCROLL REVEAL
+// ==========================================
+
+const revealElements = document.querySelectorAll(
+
+    ".fade-up, .fade-left, .fade-right, .zoom-in"
+
+);
+
+const revealObserver = new IntersectionObserver(
+
+    (entries) => {
 
         entries.forEach(entry => {
 
             if (entry.isIntersecting) {
 
-                runCounter(entry.target);
+                entry.target.classList.add("show");
 
-                observer.unobserve(entry.target);
-
-            }
-
-        });
-
-    }, {
-
-        threshold: .6
-
-    });
-
-    counters.forEach(counter => {
-
-        counter.textContent = "0";
-
-        observer.observe(counter);
-
-    });
-
-}
-
-/* ==========================================================
-   ACTIVE MENU
-========================================================== */
-
-function initActiveMenu() {
-
-    const sections = document.querySelectorAll("section[id]");
-
-    const links = document.querySelectorAll(".nav-menu a");
-
-    if (!sections.length) return;
-
-    window.addEventListener("scroll", () => {
-
-        let current = "";
-
-        sections.forEach(section => {
-
-            const top = section.offsetTop - 120;
-
-            const height = section.offsetHeight;
-
-            if (pageYOffset >= top && pageYOffset < top + height) {
-
-                current = section.getAttribute("id");
+                revealObserver.unobserve(entry.target);
 
             }
 
         });
 
-        links.forEach(link => {
+    },
 
-            link.classList.remove("active");
+    {
 
-            if (link.getAttribute("href") === "#" + current) {
+        threshold: 0.15,
 
-                link.classList.add("active");
+        rootMargin: "0px 0px -50px 0px"
+
+    }
+
+);
+
+revealElements.forEach(element => {
+
+    revealObserver.observe(element);
+
+});
+
+// ==========================================
+// STAGGER ANIMATION
+// ==========================================
+
+const staggerContainers = [
+
+    ".car-grid",
+
+    ".promo-grid",
+
+    ".why-grid",
+
+    ".testimonial-grid",
+
+    ".quick-grid"
+
+];
+
+staggerContainers.forEach(selector => {
+
+    const container = document.querySelector(selector);
+
+    if (!container) return;
+
+    [...container.children].forEach((item, index) => {
+
+        item.style.transitionDelay = `${index * 0.12}s`;
+
+        item.classList.add("fade-up");
+
+        revealObserver.observe(item);
+
+    });
+
+});
+
+// ==========================================
+// HERO ANIMATION
+// ==========================================
+
+window.addEventListener("load", () => {
+
+    const heroContent = document.querySelector(".hero-content");
+
+    const heroImage = document.querySelector(".hero-image");
+
+    if (heroContent) {
+
+        heroContent.classList.add("show");
+
+    }
+
+    if (heroImage) {
+
+        heroImage.classList.add("show");
+
+    }
+
+});
+
+// ==========================================
+// PARALLAX HERO
+// ==========================================
+
+const heroImage = document.querySelector(".hero-image img");
+
+window.addEventListener("scroll", () => {
+
+    if (!heroImage) return;
+
+    const offset = window.scrollY * 0.08;
+
+    heroImage.style.transform = `translateY(${offset}px)`;
+
+});
+
+// ==========================================
+// ACTIVE BUTTON EFFECT
+// ==========================================
+
+document.querySelectorAll(".btn").forEach(button => {
+
+    button.addEventListener("mousedown", () => {
+
+        button.style.transform = "scale(.97)";
+
+    });
+
+    button.addEventListener("mouseup", () => {
+
+        button.style.transform = "";
+
+    });
+
+    button.addEventListener("mouseleave", () => {
+
+        button.style.transform = "";
+
+    });
+
+});
+
+// ==========================================
+// IMAGE FADE-IN
+// ==========================================
+
+const images = document.querySelectorAll("img");
+
+const imageObserver = new IntersectionObserver(
+
+    (entries) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.style.opacity = "1";
+
+                entry.target.style.transform = "translateY(0)";
+
+                imageObserver.unobserve(entry.target);
 
             }
 
         });
 
-    });
+    },
+
+    {
+
+        threshold: 0.1
+
+    }
+
+);
+
+images.forEach(img => {
+
+    img.style.opacity = "0";
+
+    img.style.transform = "translateY(20px)";
+
+    img.style.transition = "all .6s ease";
+
+    imageObserver.observe(img);
+
+});
+// ==========================================
+// COUNTER ANIMATION
+// ==========================================
+
+const counters = document.querySelectorAll(
+
+    ".stat-box h3, .about-stat h3"
+
+);
+
+const counterObserver = new IntersectionObserver(
+
+    (entries) => {
+
+        entries.forEach(entry => {
+
+            if (!entry.isIntersecting) return;
+
+            const counter = entry.target;
+
+            const text = counter.textContent.trim();
+
+            const number = parseInt(text.replace(/\D/g, ""));
+
+            if (isNaN(number)) return;
+
+            const suffix = text.replace(/[0-9]/g, "");
+
+            let current = 0;
+
+            const increment = Math.max(1, Math.ceil(number / 60));
+
+            const timer = setInterval(() => {
+
+                current += increment;
+
+                if (current >= number) {
+
+                    current = number;
+
+                    clearInterval(timer);
+
+                }
+
+                counter.textContent = current + suffix;
+
+            }, 25);
+
+            counterObserver.unobserve(counter);
+
+        });
+
+    },
+
+    {
+
+        threshold: 0.4
+
+    }
+
+);
+
+counters.forEach(counter => {
+
+    counterObserver.observe(counter);
+
+});
+
+// ==========================================
+// TYPING EFFECT
+// ==========================================
+
+const typingElement = document.querySelector("[data-typing]");
+
+if (typingElement) {
+
+    const text = typingElement.dataset.typing;
+
+    let index = 0;
+
+    typingElement.textContent = "";
+
+    function typeText() {
+
+        if (index < text.length) {
+
+            typingElement.textContent += text.charAt(index);
+
+            index++;
+
+            setTimeout(typeText, 60);
+
+        }
+
+    }
+
+    window.addEventListener("load", typeText);
 
 }
 
-/* ==========================================================
-   HERO PARALLAX
-========================================================== */
+// ==========================================
+// TESTIMONIAL AUTO SLIDER
+// ==========================================
 
-function initHeroParallax() {
+const testimonialGrid = document.querySelector(".testimonial-grid");
 
-    const hero = document.querySelector(".hero");
+if (testimonialGrid && window.innerWidth <= 768) {
 
-    if (!hero) return;
+    let current = 0;
 
-    window.addEventListener("scroll", () => {
+    const cards = testimonialGrid.querySelectorAll(".testimonial-card");
 
-        const offset = window.pageYOffset;
+    function showTestimonial(index) {
 
-        hero.style.backgroundPositionY = offset * 0.45 + "px";
+        cards.forEach((card, i) => {
 
-    });
+            card.style.display = i === index ? "block" : "none";
+
+        });
+
+    }
+
+    if (cards.length > 0) {
+
+        showTestimonial(current);
+
+        setInterval(() => {
+
+            current++;
+
+            if (current >= cards.length) {
+
+                current = 0;
+
+            }
+
+            showTestimonial(current);
+
+        }, 5000);
+
+    }
 
 }
 
-/* ==========================================================
-   LAZY IMAGE
-========================================================== */
+// ==========================================
+// HERO PARALLAX CONTENT
+// ==========================================
 
-function initLazyImage() {
+const heroContent = document.querySelector(".hero-content");
 
-    const images = document.querySelectorAll("img[data-src]");
+window.addEventListener("scroll", () => {
 
-    if (!images.length) return;
+    if (!heroContent) return;
 
-    const observer = new IntersectionObserver((entries) => {
+    const offset = window.scrollY * 0.04;
+
+    heroContent.style.transform = `translateY(${offset}px)`;
+
+});
+
+// ==========================================
+// BUTTON RIPPLE
+// ==========================================
+
+document.querySelectorAll(".btn").forEach(button => {
+
+    button.addEventListener("click", function (e) {
+
+        const circle = document.createElement("span");
+
+        const diameter = Math.max(
+
+            this.clientWidth,
+
+            this.clientHeight
+
+        );
+
+        const radius = diameter / 2;
+
+        circle.style.width = circle.style.height = `${diameter}px`;
+
+        circle.style.left = `${e.offsetX - radius}px`;
+
+        circle.style.top = `${e.offsetY - radius}px`;
+
+        circle.classList.add("ripple");
+
+        const ripple = this.querySelector(".ripple");
+
+        if (ripple) {
+
+            ripple.remove();
+
+        }
+
+        this.appendChild(circle);
+
+    });
+
+});
+
+// ==========================================
+// BUTTON HOVER GLOW
+// ==========================================
+
+document.querySelectorAll(".btn-primary").forEach(button => {
+
+    button.addEventListener("mouseenter", () => {
+
+        button.style.boxShadow =
+
+            "0 12px 35px rgba(235,10,30,.35)";
+
+    });
+
+    button.addEventListener("mouseleave", () => {
+
+        button.style.boxShadow = "";
+
+    });
+
+});
+
+// ==========================================
+// SECTION FADE DELAY
+// ==========================================
+
+document.querySelectorAll("section").forEach((section, index) => {
+
+    section.style.animationDelay = `${index * 0.08}s`;
+
+});
+
+// ==========================================
+// PERFORMANCE
+// ==========================================
+
+window.addEventListener(
+
+    "scroll",
+
+    () => {},
+
+    {
+
+        passive: true
+
+    }
+
+);
+// ==========================================
+// LAZY LOADING IMAGE
+// ==========================================
+
+const lazyImages = document.querySelectorAll("img");
+
+if ("IntersectionObserver" in window) {
+
+    const lazyObserver = new IntersectionObserver((entries, observer) => {
 
         entries.forEach(entry => {
 
@@ -380,9 +832,15 @@ function initLazyImage() {
 
             const img = entry.target;
 
-            img.src = img.dataset.src;
+            if (img.dataset.src) {
 
-            img.removeAttribute("data-src");
+                img.src = img.dataset.src;
+
+                img.removeAttribute("data-src");
+
+            }
+
+            img.classList.add("loaded");
 
             observer.unobserve(img);
 
@@ -390,419 +848,65 @@ function initLazyImage() {
 
     });
 
-    images.forEach(img => observer.observe(img));
+    lazyImages.forEach(img => lazyObserver.observe(img));
 
 }
 
-/* ==========================================================
-   WINDOW LOAD
-========================================================== */
+// ==========================================
+// AUTO CLOSE MENU (OUTSIDE CLICK)
+// ==========================================
 
-window.addEventListener("load", () => {
+document.addEventListener("click", (e) => {
 
-    initScrollReveal();
+    if (!navMenu || !menuToggle) return;
 
-    initCounter();
+    const clickedMenu = navMenu.contains(e.target);
 
-    initActiveMenu();
+    const clickedToggle = menuToggle.contains(e.target);
 
-    initHeroParallax();
+    if (
 
-    initLazyImage();
+        navMenu.classList.contains("active") &&
 
-});
-/* ==========================================================
-   FAQ ACCORDION
-========================================================== */
+        !clickedMenu &&
 
-function initFAQ() {
+        !clickedToggle
 
-    const items = document.querySelectorAll(".faq-item");
+    ) {
 
-    if (!items.length) return;
+        navMenu.classList.remove("active");
 
-    items.forEach((item) => {
+        menuToggle.classList.remove("active");
 
-        const answer = item.querySelector("p");
+        const icon = menuToggle.querySelector("i");
 
-        if (!answer) return;
+        if (icon) {
 
-        answer.style.maxHeight = "0px";
+            icon.classList.remove("fa-times");
 
-        answer.style.overflow = "hidden";
-
-        answer.style.transition = "max-height .35s ease";
-
-        item.addEventListener("click", () => {
-
-            const opened = item.classList.contains("active");
-
-            items.forEach((faq) => {
-
-                faq.classList.remove("active");
-
-                const p = faq.querySelector("p");
-
-                if (p) {
-
-                    p.style.maxHeight = "0px";
-
-                }
-
-            });
-
-            if (!opened) {
-
-                item.classList.add("active");
-
-                answer.style.maxHeight = answer.scrollHeight + "px";
-
-            }
-
-        });
-
-    });
-
-}
-
-/* ==========================================================
-   RIPPLE BUTTON
-========================================================== */
-
-function initRipple() {
-
-    document.querySelectorAll(".btn").forEach((button) => {
-
-        button.addEventListener("click", function (e) {
-
-            const circle = document.createElement("span");
-
-            const diameter = Math.max(this.clientWidth, this.clientHeight);
-
-            const radius = diameter / 2;
-
-            circle.style.width = circle.style.height = diameter + "px";
-
-            circle.style.left =
-
-                e.clientX - this.getBoundingClientRect().left - radius + "px";
-
-            circle.style.top =
-
-                e.clientY - this.getBoundingClientRect().top - radius + "px";
-
-            circle.classList.add("ripple");
-
-            const ripple = this.querySelector(".ripple");
-
-            if (ripple) {
-
-                ripple.remove();
-
-            }
-
-            this.appendChild(circle);
-
-        });
-
-    });
-
-}
-
-/* ==========================================================
-   FLOATING WHATSAPP ANIMATION
-========================================================== */
-
-function initFloatingWA() {
-
-    const wa = document.querySelector(".floating-wa");
-
-    if (!wa) return;
-
-    setInterval(() => {
-
-        wa.classList.add("pulse");
-
-        setTimeout(() => {
-
-            wa.classList.remove("pulse");
-
-        }, 1200);
-
-    }, 4500);
-
-}
-
-/* ==========================================================
-   SCROLL PROGRESS BAR
-========================================================== */
-
-function initProgressBar() {
-
-    const progress = document.createElement("div");
-
-    progress.id = "scroll-progress";
-
-    document.body.appendChild(progress);
-
-    window.addEventListener("scroll", () => {
-
-        const total =
-
-            document.documentElement.scrollHeight -
-
-            document.documentElement.clientHeight;
-
-        const percent = (window.scrollY / total) * 100;
-
-        progress.style.width = percent + "%";
-
-    });
-
-}
-
-/* ==========================================================
-   AUTO HIDE HEADER
-========================================================== */
-
-function initAutoHideHeader() {
-
-    if (!header) return;
-
-    let lastScroll = 0;
-
-    window.addEventListener("scroll", () => {
-
-        const current = window.pageYOffset;
-
-        if (current > lastScroll && current > 180) {
-
-            header.classList.add("hide");
-
-        } else {
-
-            header.classList.remove("hide");
+            icon.classList.add("fa-bars");
 
         }
 
-        lastScroll = current;
-
-    });
-
-}
-
-/* ==========================================================
-   CARD HOVER EFFECT
-========================================================== */
-
-function initCardHover() {
-
-    document.querySelectorAll(
-
-        ".car-card,.why-card,.testimonial-card"
-
-    ).forEach((card) => {
-
-        card.addEventListener("mousemove", (e) => {
-
-            const rect = card.getBoundingClientRect();
-
-            const x = e.clientX - rect.left;
-
-            const y = e.clientY - rect.top;
-
-            const rotateX = (y / rect.height - .5) * -8;
-
-            const rotateY = (x / rect.width - .5) * 8;
-
-            card.style.transform =
-
-                `perspective(1000px)
-
-                 rotateX(${rotateX}deg)
-
-                 rotateY(${rotateY}deg)
-
-                 translateY(-8px)`;
-
-        });
-
-        card.addEventListener("mouseleave", () => {
-
-            card.style.transform = "";
-
-        });
-
-    });
-
-}
-
-/* ==========================================================
-   INITIALIZE
-========================================================== */
-
-window.addEventListener("load", () => {
-
-    initFAQ();
-
-    initRipple();
-
-    initFloatingWA();
-
-    initProgressBar();
-
-    initAutoHideHeader();
-
-    initCardHover();
-
-});
-/* ==========================================================
-   TOAST NOTIFICATION
-========================================================== */
-
-function showToast(message, type = "success") {
-
-    let toast = document.getElementById("toast");
-
-    if (!toast) {
-
-        toast = document.createElement("div");
-
-        toast.id = "toast";
-
-        document.body.appendChild(toast);
-
     }
 
-    toast.className = "toast " + type;
+});
 
-    toast.innerHTML = message;
+// ==========================================
+// DEBOUNCE
+// ==========================================
 
-    toast.classList.add("show");
-
-    clearTimeout(window.toastTimer);
-
-    window.toastTimer = setTimeout(() => {
-
-        toast.classList.remove("show");
-
-    }, 3000);
-
-}
-
-/* ==========================================================
-   COPY WHATSAPP
-========================================================== */
-
-function initCopyWhatsApp() {
-
-    document.querySelectorAll("[data-copy]").forEach((button) => {
-
-        button.addEventListener("click", async () => {
-
-            const value = button.dataset.copy;
-
-            try {
-
-                await navigator.clipboard.writeText(value);
-
-                showToast("Nomor WhatsApp berhasil disalin");
-
-            } catch (err) {
-
-                showToast("Browser tidak mendukung copy otomatis", "error");
-
-            }
-
-        });
-
-    });
-
-}
-
-/* ==========================================================
-   IMAGE LIGHTBOX
-========================================================== */
-
-function initLightbox() {
-
-    const images = document.querySelectorAll(".zoom img,.gallery img");
-
-    if (!images.length) return;
-
-    const overlay = document.createElement("div");
-
-    overlay.id = "lightbox";
-
-    overlay.innerHTML = "<img>";
-
-    document.body.appendChild(overlay);
-
-    const preview = overlay.querySelector("img");
-
-    images.forEach((img) => {
-
-        img.style.cursor = "zoom-in";
-
-        img.addEventListener("click", () => {
-
-            preview.src = img.src;
-
-            overlay.classList.add("show");
-
-        });
-
-    });
-
-    overlay.addEventListener("click", () => {
-
-        overlay.classList.remove("show");
-
-    });
-
-}
-
-/* ==========================================================
-   DEBOUNCE
-========================================================== */
-
-function debounce(callback, delay = 200) {
+function debounce(func, wait = 100) {
 
     let timeout;
 
-    return (...args) => {
+    return function (...args) {
 
         clearTimeout(timeout);
 
         timeout = setTimeout(() => {
 
-            callback.apply(null, args);
-
-        }, delay);
-
-    };
-
-}
-
-/* ==========================================================
-   THROTTLE
-========================================================== */
-
-function throttle(callback, wait = 100) {
-
-    let waiting = false;
-
-    return (...args) => {
-
-        if (waiting) return;
-
-        callback.apply(null, args);
-
-        waiting = true;
-
-        setTimeout(() => {
-
-            waiting = false;
+            func.apply(this, args);
 
         }, wait);
 
@@ -810,338 +914,86 @@ function throttle(callback, wait = 100) {
 
 }
 
-/* ==========================================================
-   HEADER SHADOW
-========================================================== */
-
-function initHeaderShadow() {
-
-    if (!header) return;
-
-    window.addEventListener("scroll",
-
-        throttle(() => {
-
-            if (window.scrollY > 40) {
-
-                header.style.boxShadow =
-
-                    "0 15px 35px rgba(0,0,0,.08)";
-
-            } else {
-
-                header.style.boxShadow = "none";
-
-            }
-
-        }, 100)
-
-    );
-
-}
-
-/* ==========================================================
-   BUTTON LOADING
-========================================================== */
-
-function initLoadingButton() {
-
-    document.querySelectorAll(".btn-loading").forEach((btn) => {
-
-        btn.addEventListener("click", () => {
-
-            const text = btn.innerHTML;
-
-            btn.disabled = true;
-
-            btn.innerHTML =
-
-                '<i class="fas fa-spinner fa-spin"></i> Loading...';
-
-            setTimeout(() => {
-
-                btn.disabled = false;
-
-                btn.innerHTML = text;
-
-            }, 1800);
-
-        });
-
-    });
-
-}
-
-/* ==========================================================
-   INIT
-========================================================== */
-
-window.addEventListener("load", () => {
-
-    initCopyWhatsApp();
-
-    initLightbox();
-
-    initHeaderShadow();
-
-    initLoadingButton();
-
-});
-/* ==========================================================
-   PREMIUM V5
-   PART 5 (FINAL)
-========================================================== */
-
-/* ==========================================================
-   NETWORK STATUS
-========================================================== */
-
-function updateNetworkStatus() {
-
-    if (navigator.onLine) {
-
-        showToast("Koneksi internet tersambung");
-
-    } else {
-
-        showToast("Koneksi internet terputus","error");
-
-    }
-
-}
-
-window.addEventListener("online", updateNetworkStatus);
-
-window.addEventListener("offline", updateNetworkStatus);
-
-/* ==========================================================
-   REDUCED MOTION
-========================================================== */
-
-function initReducedMotion() {
-
-    const reduce = window.matchMedia(
-
-        "(prefers-reduced-motion: reduce)"
-
-    );
-
-    if (reduce.matches) {
-
-        document.documentElement.classList.add("reduce-motion");
-
-    }
-
-}
-
-initReducedMotion();
-
-/* ==========================================================
-   CURRENT YEAR
-========================================================== */
-
-function updateYear() {
-
-    const year = document.getElementById("year");
-
-    if(year){
-
-        year.textContent = new Date().getFullYear();
-
-    }
-
-}
-
-updateYear();
-
-/* ==========================================================
-   ACTIVE BUTTON
-========================================================== */
-
-function initButtonState(){
-
-    document.querySelectorAll(".btn").forEach(btn=>{
-
-        btn.addEventListener("mousedown",()=>{
-
-            btn.classList.add("pressed");
-
-        });
-
-        btn.addEventListener("mouseup",()=>{
-
-            btn.classList.remove("pressed");
-
-        });
-
-        btn.addEventListener("mouseleave",()=>{
-
-            btn.classList.remove("pressed");
-
-        });
-
-    });
-
-}
-
-initButtonState();
-
-/* ==========================================================
-   IMAGE ERROR
-========================================================== */
-
-function imageFallback(){
-
-    document.querySelectorAll("img").forEach(img=>{
-
-        img.addEventListener("error",()=>{
-
-            img.src="images/no-image.webp";
-
-        });
-
-    });
-
-}
-
-imageFallback();
-
-/* ==========================================================
-   EXTERNAL LINK
-========================================================== */
-
-function externalLink(){
-
-    document.querySelectorAll("a[target='_blank']").forEach(link=>{
-
-        link.setAttribute(
-
-            "rel",
-
-            "noopener noreferrer"
-
-        );
-
-    });
-
-}
-
-externalLink();
-
-/* ==========================================================
-   PERFORMANCE LOG
-========================================================== */
-
-window.addEventListener("load",()=>{
-
-    if("performance" in window){
-
-        const time=Math.round(
-
-            performance.now()
-
-        );
-
-        console.log(
-
-            "Toyota Premium V5 Loaded in",
-
-            time,
-
-            "ms"
-
-        );
-
-    }
-
-});
-
-/* ==========================================================
-   GLOBAL ERROR
-========================================================== */
-
-window.addEventListener("error",(event)=>{
-
-    console.warn(
-
-        "Script Error:",
-
-        event.message
-
-    );
-
-});
-
-/* ==========================================================
-   UNHANDLED PROMISE
-========================================================== */
+// ==========================================
+// RESIZE EVENT
+// ==========================================
 
 window.addEventListener(
 
-    "unhandledrejection",
+    "resize",
 
-    (event)=>{
+    debounce(() => {
 
-        console.warn(
+        if (window.innerWidth > 992) {
 
-            "Promise Error:",
+            navMenu?.classList.remove("active");
 
-            event.reason
+            menuToggle?.classList.remove("active");
 
-        );
+        }
 
-    }
+    }, 150)
 
 );
 
-/* ==========================================================
-   KEYBOARD ACCESSIBILITY
-========================================================== */
+// ==========================================
+// KEYBOARD ACCESSIBILITY
+// ==========================================
 
-document.addEventListener("keyup",(e)=>{
+document.addEventListener("keydown", (e) => {
 
-    if(e.key==="Escape"){
+    if (e.key === "Escape") {
 
-        const menu=document.querySelector(".nav-menu");
+        navMenu?.classList.remove("active");
 
-        if(menu){
-
-            menu.classList.remove("active");
-
-        }
-
-        if(menuToggle){
-
-            menuToggle.classList.remove("active");
-
-        }
+        menuToggle?.classList.remove("active");
 
     }
 
 });
 
-/* ==========================================================
-   DISABLE DOUBLE CLICK
-========================================================== */
+// ==========================================
+// CURRENT YEAR
+// ==========================================
 
-document.querySelectorAll(".btn").forEach(btn=>{
+const yearElement = document.getElementById("year");
 
-    btn.addEventListener("dblclick",(e)=>{
+if (yearElement) {
 
-        e.preventDefault();
+    yearElement.textContent = new Date().getFullYear();
 
-    });
+}
+
+// ==========================================
+// SAFE EXTERNAL LINK
+// ==========================================
+
+document.querySelectorAll('a[target="_blank"]').forEach(link => {
+
+    link.setAttribute("rel", "noopener noreferrer");
 
 });
 
-/* ==========================================================
-   FINISH
-========================================================== */
+// ==========================================
+// ERROR HANDLER
+// ==========================================
 
-console.log(
+window.addEventListener("error", (event) => {
 
-"%cToyota Pamulang Premium V5 Ready",
+    console.error("JavaScript Error:", event.message);
 
-"background:#EB0A1E;color:#fff;padding:8px 15px;border-radius:5px;font-weight:bold"
+});
 
-);
+// ==========================================
+// DOM READY
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    console.log("Toyota Premium Website Loaded Successfully.");
+
+});
+
+// ==========================================
+// END OF FILE
+// ==========================================
