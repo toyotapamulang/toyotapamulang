@@ -1,1 +1,2326 @@
+/* ==========================================================
+   TOYOTA PAMULANG PREMIUM V5
+   STYLE.CSS
+   Author : Eric Pranata
+   ========================================================== */
 
+/* ===========================
+   RESET
+=========================== */
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#ffffff;
+    color:#222;
+    overflow-x:hidden;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+ul{
+    list-style:none;
+}
+
+button{
+    border:none;
+    background:none;
+    cursor:pointer;
+    font-family:inherit;
+}
+
+input,
+textarea,
+select{
+    font-family:inherit;
+}
+
+/* ===========================
+   VARIABLES
+=========================== */
+
+:root{
+
+    --primary:#EB0A1E;
+    --primary-dark:#c70018;
+
+    --black:#111111;
+
+    --dark:#1a1a1a;
+
+    --gray:#777;
+
+    --light:#f7f7f7;
+
+    --white:#ffffff;
+
+    --radius:18px;
+
+    --radius-lg:28px;
+
+    --shadow:
+
+        0 20px 60px rgba(0,0,0,.08);
+
+    --transition:.35s ease;
+
+}
+
+/* ===========================
+   CONTAINER
+=========================== */
+
+.container{
+
+    width:min(1280px,92%);
+
+    margin:auto;
+
+}
+
+/* ===========================
+   SECTION
+=========================== */
+
+section{
+
+    padding:100px 0;
+
+}
+
+.section-tag{
+
+    display:inline-block;
+
+    color:var(--primary);
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    font-size:.82rem;
+
+    text-transform:uppercase;
+
+    margin-bottom:18px;
+
+}
+
+.section-header{
+
+    text-align:center;
+
+    max-width:760px;
+
+    margin:0 auto 70px;
+
+}
+
+.section-header h2{
+
+    font-size:clamp(2rem,4vw,3.4rem);
+
+    color:var(--black);
+
+    margin-bottom:18px;
+
+    font-weight:700;
+
+    line-height:1.2;
+
+}
+
+.section-header p{
+
+    color:var(--gray);
+
+    font-size:1.05rem;
+
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    padding:15px 34px;
+
+    border-radius:999px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.btn-primary{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+.btn-primary:hover{
+
+    background:var(--primary-dark);
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 35px rgba(235,10,30,.30);
+
+}
+
+.btn-outline{
+
+    border:2px solid var(--primary);
+
+    color:var(--primary);
+
+    background:#fff;
+
+}
+
+.btn-outline:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/* ===========================
+   PRELOADER
+=========================== */
+
+#preloader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:99999;
+
+    transition:.5s;
+
+}
+
+.loader-logo{
+
+    width:130px;
+
+    animation:pulse 1.6s infinite;
+
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+#header{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    z-index:1000;
+
+    transition:.4s;
+
+    padding:18px 0;
+
+}
+
+#header.scrolled{
+
+    background:rgba(255,255,255,.95);
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    padding:12px 0;
+
+}
+
+.navbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.logo img{
+
+    width:180px;
+
+}
+
+.nav-menu{
+
+    display:flex;
+
+    gap:34px;
+
+    align-items:center;
+
+}
+
+.nav-menu a{
+
+    font-weight:500;
+
+    color:#fff;
+
+    position:relative;
+
+    transition:.3s;
+
+}
+
+#header.scrolled .nav-menu a{
+
+    color:#222;
+
+}
+
+.nav-menu a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-6px;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--primary);
+
+    transition:.3s;
+
+}
+
+.nav-menu a:hover::after,
+
+.nav-menu a.active::after{
+
+    width:100%;
+
+}
+
+.header-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.header-btn{
+
+    background:var(--primary);
+
+    color:#fff;
+
+    padding:12px 22px;
+
+    border-radius:999px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.header-btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.menu-toggle{
+
+    display:none;
+
+    width:34px;
+
+    cursor:pointer;
+
+}
+
+.menu-toggle span{
+
+    display:block;
+
+    height:3px;
+
+    margin:6px 0;
+
+    background:#fff;
+
+    border-radius:20px;
+
+}
+
+#header.scrolled .menu-toggle span{
+
+    background:#111;
+
+}
+
+/* ===========================
+   HERO
+=========================== */
+
+.hero{
+
+    position:relative;
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    overflow:hidden;
+
+}
+
+.hero-bg{
+
+    position:absolute;
+
+    inset:0;
+
+}
+
+.hero-bg img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transform:scale(1.08);
+
+}
+
+.hero-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        rgba(0,0,0,.65),
+        rgba(0,0,0,.35)
+    );
+
+    z-index:1;
+
+}
+
+.hero .container{
+
+    position:relative;
+
+    z-index:2;
+
+}
+/* ==========================================================
+   HERO CONTENT
+========================================================== */
+
+.hero-content{
+
+    max-width:760px;
+
+    color:var(--white);
+
+}
+
+.hero-tag{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:10px 22px;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(14px);
+
+    border:1px solid rgba(255,255,255,.2);
+
+    border-radius:999px;
+
+    font-size:.85rem;
+
+    font-weight:600;
+
+    margin-bottom:30px;
+
+}
+
+.hero h1{
+
+    font-size:clamp(3rem,7vw,5.8rem);
+
+    line-height:1.05;
+
+    font-weight:800;
+
+    margin-bottom:30px;
+
+    letter-spacing:-2px;
+
+}
+
+.hero p{
+
+    max-width:620px;
+
+    font-size:1.15rem;
+
+    color:rgba(255,255,255,.9);
+
+    margin-bottom:40px;
+
+}
+
+.hero-button{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    margin-bottom:45px;
+
+}
+
+.hero-info{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+}
+
+.hero-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    padding:14px 20px;
+
+    border-radius:999px;
+
+}
+
+.hero-item i{
+
+    color:#00d26a;
+
+}
+
+.hero-item span{
+
+    font-size:.95rem;
+
+    color:#fff;
+
+}
+
+/* ==========================================================
+   SCROLL INDICATOR
+========================================================== */
+
+.scroll-down{
+
+    position:absolute;
+
+    bottom:40px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:10;
+
+}
+
+.scroll-down span{
+
+    display:block;
+
+    width:34px;
+
+    height:58px;
+
+    border:2px solid #fff;
+
+    border-radius:50px;
+
+    position:relative;
+
+}
+
+.scroll-down span::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:10px;
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    transform:translateX(-50%);
+
+    animation:scrollDown 2s infinite;
+
+}
+
+/* ==========================================================
+   QUICK ACTION
+========================================================== */
+
+.quick-action{
+
+    background:#fff;
+
+    margin-top:-80px;
+
+    position:relative;
+
+    z-index:5;
+
+    padding-bottom:70px;
+
+}
+
+.quick-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:28px;
+
+}
+
+.quick-card{
+
+    background:#fff;
+
+    padding:38px 28px;
+
+    border-radius:24px;
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+    text-align:center;
+
+}
+
+.quick-card:hover{
+
+    transform:translateY(-12px);
+
+}
+
+.quick-card i{
+
+    width:78px;
+
+    height:78px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:rgba(235,10,30,.08);
+
+    color:var(--primary);
+
+    font-size:30px;
+
+    margin-bottom:24px;
+
+}
+
+.quick-card h3{
+
+    font-size:1.25rem;
+
+    color:var(--black);
+
+    margin-bottom:10px;
+
+}
+
+.quick-card p{
+
+    color:var(--gray);
+
+    font-size:.95rem;
+
+}
+
+/* ==========================================================
+   COUNTER
+========================================================== */
+
+.counter{
+
+    background:var(--light);
+
+}
+
+.counter-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:30px;
+
+}
+
+.counter-box{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    text-align:center;
+
+    padding:45px 20px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.counter-box h2{
+
+    color:var(--primary);
+
+    font-size:3rem;
+
+    margin-bottom:10px;
+
+    font-weight:700;
+
+}
+
+.counter-box p{
+
+    color:var(--gray);
+
+}
+
+/* ==========================================================
+   ABOUT HOME
+========================================================== */
+
+.about-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:80px;
+
+    align-items:center;
+
+}
+
+.about-image{
+
+    position:relative;
+
+}
+
+.about-image img{
+
+    width:100%;
+
+    border-radius:28px;
+
+    box-shadow:0 25px 70px rgba(0,0,0,.15);
+
+}
+
+.about-content h2{
+
+    font-size:clamp(2rem,4vw,3.2rem);
+
+    margin-bottom:24px;
+
+    line-height:1.2;
+
+    color:var(--black);
+
+}
+
+.about-content p{
+
+    color:var(--gray);
+
+    margin-bottom:30px;
+
+}
+
+.about-list{
+
+    display:grid;
+
+    gap:16px;
+
+    margin-bottom:40px;
+
+}
+
+.about-list li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:#444;
+
+    font-weight:500;
+
+}
+
+.about-list i{
+
+    color:var(--primary);
+
+}
+
+/* ==========================================================
+   SECTION BUTTON
+========================================================== */
+
+.section-button{
+
+    margin-top:55px;
+
+    text-align:center;
+
+}
+/* ==========================================================
+   TOYOTA LINE UP
+========================================================== */
+
+.lineup{
+
+    background:#ffffff;
+
+}
+
+.lineup-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+
+    gap:32px;
+
+}
+
+/* ==========================================================
+   CAR CARD
+========================================================== */
+
+.car-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#fff;
+
+    border-radius:28px;
+
+    box-shadow:0 18px 50px rgba(0,0,0,.08);
+
+    transition:all .45s ease;
+
+}
+
+.car-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 35px 70px rgba(0,0,0,.15);
+
+}
+
+/* ==========================================================
+   CAR IMAGE
+========================================================== */
+
+.car-image{
+
+    position:relative;
+
+    overflow:hidden;
+
+    height:240px;
+
+    background:#f5f5f5;
+
+}
+
+.car-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:transform .6s ease;
+
+}
+
+.car-card:hover .car-image img{
+
+    transform:scale(1.08);
+
+}
+
+/* ==========================================================
+   LABEL
+========================================================== */
+
+.car-label{
+
+    position:absolute;
+
+    top:20px;
+
+    left:20px;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    font-size:.8rem;
+
+    font-weight:600;
+
+    letter-spacing:.5px;
+
+}
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.car-content{
+
+    padding:30px;
+
+}
+
+.car-content h3{
+
+    font-size:1.55rem;
+
+    color:var(--black);
+
+    margin-bottom:10px;
+
+    font-weight:700;
+
+}
+
+.price{
+
+    color:var(--gray);
+
+    margin-bottom:28px;
+
+    font-size:.95rem;
+
+}
+
+.price strong{
+
+    display:block;
+
+    margin-top:8px;
+
+    font-size:1.5rem;
+
+    color:var(--primary);
+
+    font-weight:700;
+
+}
+
+/* ==========================================================
+   BUTTON
+========================================================== */
+
+.car-action{
+
+    display:flex;
+
+    gap:14px;
+
+}
+
+.car-action a{
+
+    flex:1;
+
+    text-align:center;
+
+    padding:14px 0;
+
+    border-radius:999px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.car-action .btn-outline{
+
+    border:2px solid var(--primary);
+
+    color:var(--primary);
+
+    background:#fff;
+
+}
+
+.car-action .btn-outline:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+.car-action .btn-primary{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+.car-action .btn-primary:hover{
+
+    background:var(--primary-dark);
+
+}
+
+/* ==========================================================
+   PROMO HOME
+========================================================== */
+
+.promo-home{
+
+    background:linear-gradient(135deg,#eb0a1e,#b10016);
+
+    color:#fff;
+
+}
+
+.promo-wrapper{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    align-items:center;
+
+    gap:70px;
+
+}
+
+.promo-image{
+
+    overflow:hidden;
+
+    border-radius:28px;
+
+}
+
+.promo-image img{
+
+    width:100%;
+
+    border-radius:28px;
+
+    transition:.6s;
+
+}
+
+.promo-image:hover img{
+
+    transform:scale(1.05);
+
+}
+
+/* ==========================================================
+   PROMO CONTENT
+========================================================== */
+
+.promo-content h2{
+
+    font-size:clamp(2rem,4vw,3.2rem);
+
+    line-height:1.2;
+
+    margin-bottom:22px;
+
+    color:#fff;
+
+}
+
+.promo-content p{
+
+    color:rgba(255,255,255,.88);
+
+    margin-bottom:35px;
+
+}
+
+.promo-list{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    margin-bottom:40px;
+
+}
+
+.promo-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:rgba(255,255,255,.10);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(14px);
+
+    padding:16px 20px;
+
+    border-radius:18px;
+
+}
+
+.promo-item i{
+
+    color:#ffffff;
+
+}
+
+/* ==========================================================
+   PROMO BUTTON
+========================================================== */
+
+.promo-button{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+}
+
+.promo-button .btn-outline{
+
+    border:2px solid #fff;
+
+    color:#fff;
+
+    background:transparent;
+
+}
+
+.promo-button .btn-outline:hover{
+
+    background:#fff;
+
+    color:var(--primary);
+
+}
+
+/* ==========================================================
+   GLASS EFFECT
+========================================================== */
+
+.glass{
+
+    background:rgba(255,255,255,.12);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:24px;
+
+}
+
+/* ==========================================================
+   IMAGE HOVER
+========================================================== */
+
+.zoom{
+
+    overflow:hidden;
+
+}
+
+.zoom img{
+
+    transition:.6s;
+
+}
+
+.zoom:hover img{
+
+    transform:scale(1.08);
+
+}
+/* ==========================================================
+   WHY CHOOSE US
+========================================================== */
+
+.why{
+
+    background:#fafafa;
+
+}
+
+.why-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+
+}
+
+.why-card{
+
+    background:#fff;
+
+    padding:45px 35px;
+
+    border-radius:28px;
+
+    text-align:center;
+
+    transition:.4s;
+
+    box-shadow:0 15px 45px rgba(0,0,0,.06);
+
+    border:1px solid #f2f2f2;
+
+}
+
+.why-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 30px 70px rgba(0,0,0,.12);
+
+}
+
+.why-card i{
+
+    width:90px;
+
+    height:90px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:auto;
+
+    margin-bottom:25px;
+
+    border-radius:50%;
+
+    background:rgba(235,10,30,.08);
+
+    color:var(--primary);
+
+    font-size:34px;
+
+}
+
+.why-card h3{
+
+    margin-bottom:15px;
+
+    font-size:1.4rem;
+
+    color:var(--black);
+
+}
+
+.why-card p{
+
+    color:var(--gray);
+
+    line-height:1.8;
+
+}
+
+/* ==========================================================
+   SIMULATION
+========================================================== */
+
+.simulation-home{
+
+    background:#fff;
+
+}
+
+.simulation-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    align-items:center;
+
+    gap:80px;
+
+}
+
+.simulation-image{
+
+    overflow:hidden;
+
+    border-radius:28px;
+
+}
+
+.simulation-image img{
+
+    width:100%;
+
+    border-radius:28px;
+
+    transition:.5s;
+
+}
+
+.simulation-image:hover img{
+
+    transform:scale(1.05);
+
+}
+
+.simulation-text h2{
+
+    font-size:clamp(2.2rem,4vw,3.5rem);
+
+    line-height:1.2;
+
+    margin-bottom:25px;
+
+}
+
+.simulation-text p{
+
+    color:var(--gray);
+
+    margin-bottom:35px;
+
+}
+
+/* ==========================================================
+   CTA BANNER
+========================================================== */
+
+.cta-banner{
+
+    padding:120px 0;
+
+    background:
+
+    linear-gradient(
+
+        rgba(235,10,30,.92),
+
+        rgba(170,0,20,.95)
+
+    ),
+
+    url("../images/cta-bg.webp") center/cover;
+
+}
+
+.cta-content{
+
+    max-width:900px;
+
+    margin:auto;
+
+    text-align:center;
+
+    color:#fff;
+
+}
+
+.cta-content h2{
+
+    font-size:clamp(2.4rem,5vw,4rem);
+
+    margin-bottom:20px;
+
+}
+
+.cta-content p{
+
+    font-size:1.1rem;
+
+    opacity:.92;
+
+    margin-bottom:40px;
+
+}
+
+.cta-button{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+.cta-button .btn-outline{
+
+    border:2px solid #fff;
+
+    color:#fff;
+
+    background:transparent;
+
+}
+
+.cta-button .btn-outline:hover{
+
+    background:#fff;
+
+    color:var(--primary);
+
+}
+
+/* ==========================================================
+   TESTIMONIAL
+========================================================== */
+
+.testimonial{
+
+    background:#f8f8f8;
+
+}
+
+.testimonial-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:35px;
+
+}
+
+.testimonial-card{
+
+    background:#fff;
+
+    padding:40px;
+
+    border-radius:28px;
+
+    transition:.35s;
+
+    box-shadow:0 15px 50px rgba(0,0,0,.06);
+
+    position:relative;
+
+}
+
+.testimonial-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.testimonial-stars{
+
+    display:flex;
+
+    gap:5px;
+
+    margin-bottom:22px;
+
+    color:#f6b400;
+
+}
+
+.testimonial-card p{
+
+    color:var(--gray);
+
+    margin-bottom:28px;
+
+    line-height:1.9;
+
+}
+
+.testimonial-card h4{
+
+    color:var(--black);
+
+    margin-bottom:6px;
+
+}
+
+.testimonial-card span{
+
+    color:var(--primary);
+
+    font-size:.95rem;
+
+    font-weight:600;
+
+}
+
+/* ==========================================================
+   QUOTE ICON
+========================================================== */
+
+.testimonial-card::before{
+
+    content:"❝";
+
+    position:absolute;
+
+    top:25px;
+
+    right:35px;
+
+    font-size:70px;
+
+    color:rgba(235,10,30,.08);
+
+    font-family:serif;
+
+}
+
+/* ==========================================================
+   CARD HOVER BORDER
+========================================================== */
+
+.car-card::after,
+
+.why-card::after,
+
+.testimonial-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:0;
+
+    width:0;
+
+    height:4px;
+
+    background:var(--primary);
+
+    transition:.4s;
+
+}
+
+.car-card:hover::after,
+
+.why-card:hover::after,
+
+.testimonial-card:hover::after{
+
+    width:100%;
+
+}
+/* ==========================================================
+   FAQ
+========================================================== */
+
+.faq{
+
+    background:#ffffff;
+
+}
+
+.faq-wrapper{
+
+    max-width:900px;
+
+    margin:60px auto 0;
+
+}
+
+.faq-item{
+
+    background:#fff;
+
+    border:1px solid #ececec;
+
+    border-radius:20px;
+
+    margin-bottom:18px;
+
+    padding:28px;
+
+    transition:.35s ease;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.04);
+
+}
+
+.faq-item:hover{
+
+    border-color:var(--primary);
+
+    transform:translateY(-4px);
+
+}
+
+.faq-item h3{
+
+    font-size:1.15rem;
+
+    color:var(--black);
+
+    margin-bottom:12px;
+
+}
+
+.faq-item p{
+
+    color:var(--gray);
+
+    line-height:1.8;
+
+}
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+.footer{
+
+    background:#111111;
+
+    color:#d8d8d8;
+
+    padding:90px 0 30px;
+
+}
+
+.footer-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr 1fr;
+
+    gap:60px;
+
+    margin-bottom:50px;
+
+}
+
+.footer-logo{
+
+    width:180px;
+
+    margin-bottom:25px;
+
+}
+
+.footer h3{
+
+    color:#fff;
+
+    margin-bottom:22px;
+
+    font-size:1.2rem;
+
+}
+
+.footer ul{
+
+    display:grid;
+
+    gap:14px;
+
+}
+
+.footer ul a{
+
+    transition:.3s;
+
+}
+
+.footer ul a:hover{
+
+    color:var(--primary);
+
+    padding-left:6px;
+
+}
+
+.footer li{
+
+    display:flex;
+
+    gap:10px;
+
+    align-items:center;
+
+}
+
+.footer li i{
+
+    color:var(--primary);
+
+}
+
+.footer-bottom{
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    padding-top:25px;
+
+    text-align:center;
+
+    color:#9f9f9f;
+
+}
+
+/* ==========================================================
+   FLOATING WHATSAPP
+========================================================== */
+
+.floating-wa{
+
+    position:fixed;
+
+    right:28px;
+
+    bottom:28px;
+
+    width:64px;
+
+    height:64px;
+
+    border-radius:50%;
+
+    background:#25D366;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:32px;
+
+    z-index:999;
+
+    box-shadow:0 18px 45px rgba(37,211,102,.35);
+
+    transition:.35s;
+
+}
+
+.floating-wa:hover{
+
+    transform:scale(1.12);
+
+}
+
+/* ==========================================================
+   BACK TO TOP
+========================================================== */
+
+#backTop{
+
+    position:fixed;
+
+    right:28px;
+
+    bottom:105px;
+
+    width:52px;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.35s;
+
+    box-shadow:0 15px 35px rgba(235,10,30,.30);
+
+    z-index:998;
+
+}
+
+#backTop.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+/* ==========================================================
+   CUSTOM SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#f3f3f3;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:30px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--primary-dark);
+
+}
+
+/* ==========================================================
+   SELECTION
+========================================================== */
+
+::selection{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/* ==========================================================
+   UTILITIES
+========================================================== */
+
+.text-center{
+
+    text-align:center;
+
+}
+
+.mt-30{
+
+    margin-top:30px;
+
+}
+
+.mt-50{
+
+    margin-top:50px;
+
+}
+
+.mb-30{
+
+    margin-bottom:30px;
+
+}
+
+.mb-50{
+
+    margin-bottom:50px;
+
+}
+
+/* ==========================================================
+   ANIMATIONS
+========================================================== */
+
+@keyframes pulse{
+
+    0%,100%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.08);
+
+    }
+
+}
+
+@keyframes scrollDown{
+
+    0%{
+
+        opacity:0;
+
+        transform:translate(-50%,0);
+
+    }
+
+    50%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:translate(-50%,22px);
+
+    }
+
+}
+
+@keyframes float{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-10px);
+
+    }
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+/* ==========================================================
+   PERFORMANCE
+========================================================== */
+
+img{
+
+    image-rendering:auto;
+
+}
+
+.hero-bg img,
+
+.car-image img,
+
+.promo-image img,
+
+.simulation-image img{
+
+    will-change:transform;
+
+}
+
+.btn,
+
+.car-card,
+
+.why-card,
+
+.testimonial-card{
+
+    will-change:transform;
+
+}
+
+/* ==========================================================
+   END OF FILE
+========================================================== */
+/* ==========================================
+   SCROLL REVEAL
+========================================== */
+
+.reveal{
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:all .8s ease;
+
+}
+
+.reveal.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+/* ==========================================
+   RIPPLE EFFECT
+========================================== */
+
+.btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.ripple{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    transform:scale(0);
+
+    animation:ripple .6s linear;
+
+    background:rgba(255,255,255,.45);
+
+}
+
+@keyframes ripple{
+
+    to{
+
+        transform:scale(4);
+
+        opacity:0;
+
+    }
+
+}
+
+/* ==========================================
+   HEADER HIDE
+========================================== */
+
+header.hide{
+
+    transform:translateY(-100%);
+
+}
+
+/* ==========================================
+   WHATSAPP PULSE
+========================================== */
+
+.floating-wa.pulse{
+
+    animation:pulse 1.2s;
+
+}
+
+/* ==========================================
+   SCROLL PROGRESS
+========================================== */
+
+#scroll-progress{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:0;
+
+    height:4px;
+
+    background:var(--primary);
+
+    z-index:99999;
+
+}
+/* ==========================================
+   TOAST
+========================================== */
+
+.toast{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:30px;
+
+    background:#111;
+
+    color:#fff;
+
+    padding:15px 22px;
+
+    border-radius:12px;
+
+    opacity:0;
+
+    transform:translateY(30px);
+
+    transition:.35s;
+
+    z-index:99999;
+
+}
+
+.toast.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+.toast.error{
+
+    background:#d32f2f;
+
+}
+
+/* ==========================================
+   LIGHTBOX
+========================================== */
+
+#lightbox{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.92);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:99999;
+
+}
+
+#lightbox.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+#lightbox img{
+
+    max-width:92%;
+
+    max-height:92%;
+
+    border-radius:14px;
+
+}
+/* ==========================================
+   REDUCED MOTION
+========================================== */
+
+.reduce-motion *{
+
+    animation:none!important;
+
+    transition:none!important;
+
+    scroll-behavior:auto!important;
+
+}
+
+/* ==========================================
+   BUTTON PRESSED
+========================================== */
+
+.btn.pressed{
+
+    transform:scale(.97);
+
+}
