@@ -1,1 +1,361 @@
+/* =========================================
+   RESPONSIVE
+   PART 3
+   SMALL MOBILE
+========================================= */
 
+@media (max-width:576px){
+
+html{
+
+    font-size:14px;
+
+}
+
+section{
+
+    padding:50px 0;
+
+}
+
+.container{
+
+    width:95%;
+
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.logo img{
+
+    width:135px;
+
+}
+
+.header{
+
+    padding:14px 0;
+
+}
+
+.navbar{
+
+    top:72px;
+
+    padding:25px;
+
+}
+
+.navbar a{
+
+    font-size:16px;
+
+}
+
+/* ==========================
+   HERO
+========================== */
+
+.hero{
+
+    padding-top:100px;
+
+}
+
+.hero-text h1{
+
+    font-size:30px;
+
+}
+
+.hero-text p{
+
+    font-size:15px;
+
+}
+
+.hero-badge{
+
+    font-size:13px;
+
+    padding:8px 16px;
+
+}
+
+.hero-info{
+
+    grid-template-columns:1fr;
+
+    gap:18px;
+
+}
+
+.hero-info h2{
+
+    font-size:24px;
+
+}
+
+.hero-info span{
+
+    font-size:13px;
+
+}
+
+/* ==========================
+   BUTTON
+========================== */
+
+.btn-primary,
+
+.btn-secondary,
+
+.btn-card{
+
+    width:100%;
+
+    padding:15px;
+
+    font-size:15px;
+
+}
+
+/* ==========================
+   TITLE
+========================== */
+
+.section-title h2{
+
+    font-size:28px;
+
+}
+
+.section-title p{
+
+    font-size:14px;
+
+}
+
+/* ==========================
+   CARD
+========================== */
+
+.car-card img{
+
+    height:200px;
+
+}
+
+.car-content{
+
+    padding:22px;
+
+}
+
+.car-content h3{
+
+    font-size:22px;
+
+}
+
+.car-content h4{
+
+    font-size:24px;
+
+}
+
+.why-card,
+
+.service-box,
+
+.simulation-item,
+
+.testimonial-card{
+
+    padding:24px;
+
+}
+
+/* ==========================
+   PROMO
+========================== */
+
+.promo-text h2,
+
+.test-drive-content h2,
+
+.cta-box h2{
+
+    font-size:28px;
+
+}
+
+/* ==========================
+   FAQ
+========================== */
+
+.faq-question{
+
+    font-size:16px;
+
+    padding:20px;
+
+}
+
+.faq-answer p{
+
+    padding:0 20px 20px;
+
+}
+
+/* ==========================
+   MAP
+========================== */
+
+.map-box iframe{
+
+    height:280px;
+
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+.footer{
+
+    padding-top:60px;
+
+}
+
+.footer-grid{
+
+    gap:30px;
+
+}
+
+.footer h3{
+
+    font-size:20px;
+
+}
+
+.footer-about img{
+
+    width:160px;
+
+}
+
+.copyright{
+
+    font-size:13px;
+
+}
+
+}
+
+/* =========================================
+   EXTRA SMALL
+========================================= */
+
+@media (max-width:480px){
+
+.hero-text h1{
+
+    font-size:26px;
+
+}
+
+.hero-text p{
+
+    font-size:14px;
+
+}
+
+.section-title h2{
+
+    font-size:24px;
+
+}
+
+.promo-text h2,
+
+.test-drive-content h2,
+
+.cta-box h2{
+
+    font-size:24px;
+
+}
+
+.counter-box h2{
+
+    font-size:34px;
+
+}
+
+.counter-box p{
+
+    font-size:14px;
+
+}
+
+.floating-action{
+
+    right:12px;
+
+    bottom:18px;
+
+}
+
+.floating-action a{
+
+    width:50px;
+
+    height:50px;
+
+    font-size:20px;
+
+}
+
+#backToTop{
+
+    width:45px;
+
+    height:45px;
+
+    right:12px;
+
+    bottom:135px;
+
+}
+
+}
+
+/* =========================================
+   LANDSCAPE PHONE
+========================================= */
+
+@media (max-height:500px) and (orientation:landscape){
+
+.hero{
+
+    min-height:auto;
+
+    padding:120px 0 60px;
+
+}
+
+.hero-content{
+
+    gap:30px;
+
+}
+
+}
+
+/* =========================================
+   END RESPONSIVE.CSS
+========================================= */
