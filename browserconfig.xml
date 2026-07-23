@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<browserconfig>
+
+    <msapplication>
+
+        <tile>
+
+            <square70x70logo src="/images/icons/icon-72x72.png"/>
+
+            <square150x150logo src="/images/icons/icon-144x144.png"/>
+
+            <square310x310logo src="/images/icons/icon-512x512.png"/>
+
+            <wide310x150logo src="/images/icons/icon-384x384.png"/>
+
+            <TileColor>#eb0a1e</TileColor>
+
+        </tile>
+
+    </msapplication>
+
+</browserconfig>
+
+
+
+<meta name="msapplication-config" content="browserconfig.xml">
+<meta name="msapplication-TileColor" content="#eb0a1e">
+<meta name="theme-color" content="#eb0a1e">
